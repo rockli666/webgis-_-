@@ -1,0 +1,576 @@
+<html>
+
+<head>
+    <title>李世行和陈松的课程设计</title>
+ 	<style>
+            /*           底图设置 全屏显示         */
+           body{width:100%;height:100%;
+            position:relative;
+            background-image:url('底图.jpg');background-repeat:no-repeat;
+            background-position:-1000px -700px;background-size:3000px;}
+             
+            /*       加一个框方便绝对定位      */
+             #t0{width:100%;height:100%;position:absolute;}
+
+            /*         西南石油大学点击部分       */
+             #swpu{position:absolute;top:185px;left:750px;width:150px;height:150px;cursor:pointer}
+             #swpup{position:absolute;top:0px;left:0px;right:0px;bottom:0px;margin:auto;}
+             #swput{position:absolute;top:70px;right:110px;width:400px;height:480px;
+                    background-color:rgba(  255 ,250 ,250, 1.0);
+                    border-radius:10px 10px 10px 10px;display:none;}
+             #jianjie{position:absolute;text-indent:30px;width:360px;
+                      bottom:40px;height:250px;left:0px;right:0px;margin:auto;}
+             #swpuimg{position:absolute;top:5px;left:0px;right:0px;margin:auto;}
+             #close{position:absolute;bottom:5px;left:0px;right:0px;margin:auto;width:300px;}
+             
+            /*      搜索框设置       */
+              #top{width:1430px;height:55px;position:fixed;background-color:white;top:0px;left:0px}
+              #deleted{position:absolute;left:240px;width:20px;top:0px;bottom:0px;margin:auto;
+                       cursor:pointer;display:none;}
+              #search{border: 1.5px rgba(100,149,237,0.9) solid;width:410px;height:40px;left:5px;top:5px;    position:absolute;background-color:white; border-radius:10px 12px 12px 10px;}
+              #text-in{width:260px;height:40px;position:absolute;left:10px;border: 0px solid white;
+                      outline: none;color:rgba(0, 0, 0, 0.5);border-right:1px solid rgba(0, 0, 0, 0.1);}
+              #road{position:absolute;left:320px;top:5px;cursor:pointer}
+              #luxian{position:absolute;left:275px;top:5px;cursor:pointer}
+              #find{width:50px;height:40px;position:absolute;right:0px;border-radius:0px 10px 10px 0px;
+                    background-color:rgba(100,149,237,1)}
+              #ss{position:absolute;right:8px;top:3px;cursor:pointer;width:35px;}
+              #login{position:absolute;right:50px;width:30px;height:30px;
+                     background-color:rgba(178, 58, 238, 1.0);top:0px;bottom:0px;margin:auto; 
+                     border-radius:15px 15px 15px 15px;cursor:pointer}
+
+            /*       城市按钮       */
+              #city{position:absolute;right:100px;width:30px;top:0px;bottom:0px;margin:auto;cursor:pointer;}
+              #citychange{border: 2px rgba(100,149,237,0.9) solid;
+                         width:300px;height:60px;position:absolute;top:70px;right:100px;
+                         background-color:white; display:none;}
+              #log{font-size:10px;position:absolute;left:5px;color:white;bottom:-1px}
+              .cityp{position:absolute;left:2px;top:-6px;font-size:12px;color:rgba(0, 0, 0, 0.6);}
+              .citypr{position:absolute;left:2px;top:30px;font-size:12px;color:rgba(0, 0, 0, 0.6);}
+              #ctext-in{width:150px;height:20px;position:absolute;right:20px;top:3px;
+                        border: 1.5px rgba(100,149,237,1) solid;
+                        outline: none;color:rgba(0, 0, 0, 0.5);border-radius:3px 3px 3px 3px;}
+              #cheng{color:rgba(0, 0, 0, 0.2);top:-55px;position:absolute;}
+              #cityb{position:absolute;right:5px;top:3px;
+                border: 1.5px rgba(100,149,237,1) solid;height:20px;font-size: 12px}
+              .hotcity:hover {color: blue;cursor:pointer}
+
+
+              /*       点击搜索出现的菜单       */
+              #select{border: 2px rgba(100,149,237,0.9) solid;width:422px;height:100px;
+                      position:absolute;top:50px;
+                      background-color:white;display:none;}
+              /*          找美食            */
+              #food{width:80px;height:40px;position:absolute;top:8px;left:25px;cursor:pointer}
+              #imgf{position:absolute;left:3px;top:3px;}
+              .p1{position:absolute;right:2px;top:0px;bottom:0px;0 margin:auto;font-size:12px;color:rgba(0, 0, 0, 0.6)}
+              /*          订酒店            */
+              #hotel{width:80px;height:40px;position:absolute;top:8px;left:160px;cursor:pointer}
+              #imgh{position:absolute;left:3px;top:3px;}
+              /*          公交站            */
+              #bus{width:80px;height:2px;position:absolute;top:8px;left:300px;cursor:pointer}
+              #imgb{position:absolute;left:3px;top:3px;}
+              /*          横线            */
+              #hh{width:400px;height:10px;position:absolute;right:0px;left:0px;margin:auto;top:50px;}
+              #heng{color:rgba(0, 0, 0, 0.2);top:-30px;position:absolute;}
+              /*          下方文字            */
+              #jd{position:absolute;left:20px;top:60px;width:40px;height:40px;cursor:pointer}
+              #yh{position:absolute;left:95px;top:60px;width:40px;height:40px;cursor:pointer}
+              #dyy{position:absolute;left:180px;top:60px;width:40px;height:40px;cursor:pointer}
+              #sc{position:absolute;left:260px;top:60px;width:40px;height:40px;cursor:pointer}
+              #jg{position:absolute;left:340px;top:60px;width:40px;height:40px;cursor:pointer}
+
+              /*          西南石油大学五个地点            */
+              #u1{list-style:none;padding:0;width:422px;height:80px;
+                  position:absolute;top:30px;display:none;}
+              .swpu1{width:300px;height:30px;line-height:30px;
+                  background-color:rgba(  255 ,250 ,250, 1.0);
+                  color:rgba(0, 0, 0, 0.5);te
+                  font-weight:70;font-size:15px;
+                  cursor:pointer;}
+              .swpu1:hover{background:rgba(220 ,220 ,220, 1);}
+              .s2{position:absolute;left:30px}
+
+              /*          放大缩小            */
+              #bigsmall{width:40px;height:60px;position:fixed;bottom:80px;right:40px;
+                        border-radius:20px 20px 20px 20px;background-color:rgba(54 ,54, 54, 1.0);}
+              #hx{position:absolute;left:7px;top:30px}
+              #jia{position:absolute;left:12px;top:8px;cursor:pointer}
+              #jian{position:absolute;left:7px;bottom:5px;cursor:pointer}
+
+              /*          上下左右           */
+              #udrl{width:100px;height:100px;position:fixed;bottom:150px;right:10px}
+              #shangxia{width:40px;height:80px;position:absolute;bottom:10px;right:30px;
+                        border-radius:20px 20px 20px 20px;background-color:rgba(54 ,54, 54, 1.0);}
+              #zuoyou{width:80px;height:40px;position:absolute;bottom:30px;right:10px;
+                      border-radius:20px 20px 20px 20px;background-color:rgba(54 ,54, 54, 1.0);}
+              #shang{position:absolute;left:12px;top:8px;cursor:pointer}
+              #xia{position:absolute;left:7px;bottom:5px;cursor:pointer}
+              #zuo{position:absolute;left:8px;top:12px;cursor:pointer}
+              #you{position:absolute;right:7px;top:13px;cursor:pointer;width:17px}
+              #zhong{width:20px;height:20px;position:absolute;bottom:10px;right:30px;cursor:pointer}
+              
+              /*          导航栏            */
+              #daohanglan{width:510px;height:55px;position:absolute;left:0;right:0px;margin:0 auto;
+                          background-color:white;border-radius:12px 12px 12px 12px;}
+              #dhl{list-style:none;margin:0 auto;width:610px;height:55px;padding:10px;
+                   position:absolute;top:-10px;left:5px}
+              .dhl1{width:120px;height:55px;line-height:55px;text-align:center;
+                   float:left;background-color:white;color:rgba(100,149,237,1);
+                   font-weight:700;cursor:pointer;}
+              .dhl1:hover{background:rgba(220 ,220 ,220, 1);} 
+                 
+               /*          工具箱            */
+              .dropdown-content{display: none;position: absolute;background-color: #f9f9f9;min-width: 45px;              box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);}
+              #ghx:hover .dropdown-content {display: block;}
+              .dropdown-content a:hover {background-color: rgb(255, 218, 185);}
+              .dropdown-content a {width:45px;color: black;padding: 12px 16px;
+                                   text-decoration: none;display: block;text-align: center;
+                                   font-size:12px;height:5px;line-height:5px}
+
+                /*          绿道            */
+               .dropdown-content3{display: none;position: absolute;background-color: #f9f9f9;
+                                  min-width: 45px;box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);}
+               #ldqx:hover .dropdown-content3 {display: block;}
+               .dropdown-content3 a:hover {background-color: rgb(255, 218, 185);}
+               .dropdown-content3 a {width:90px;color: black;padding: 12px 16px;
+                                     text-decoration: none;display: block;text-align: center;
+                                     font-size:12px;height:5px;line-height:5px}
+
+                /*          航线查询            */
+               .dropdown-content2{display: none;position: absolute;background-color: #f9f9f9;
+                                  min-width: 45px;box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);}
+               #qqhx:hover .dropdown-content2 {display: block;}
+               .dropdown-content2 a:hover {background-color: rgb(255, 218, 185);}
+               .dropdown-content2 a {width:90px;color: black;padding: 12px 16px;
+                                     text-decoration: none;display: block;text-align: center;
+                                     font-size:12px;height:5px;line-height:5px}
+
+                /*        底部地图        */
+                #container0 { position: fixed;bottom: 50px;left: 180px;display: flex;
+                             background-color: white;padding: 10px 15px;
+                             border-radius: 10px;box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);display:none;}
+                .item {text-align: center; margin: 0 15px;}
+                .icon {width: 50px;height: 50px;border-radius: 10px;
+                       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);}
+                .label {margin-top: 8px;font-size: 14px;color: #333;}
+
+                /*          鼠标悬停效果            */
+                .item:hover .icon {border: 2px solid #007bff;}
+                .item:hover .label {color: #007bff;}
+
+                /*          底图点击            */
+                #container1 {position: fixed;bottom: 50px;left: 40px;background-color: white;
+                            padding: 10px 15px;border-radius: 10px;border:5px black solid;
+                            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);background-image:url("地图.png");
+                            background-repeat:no-repeat;background-size:120px;
+                            background-position:-10px -9px;height:90px;width:75px;cursor:pointer;}
+                #map0 {text-align: center;margin: 0 15px;}
+                #mapp{margin-top: 80px;font-size: 15px;color: #333;}
+       </style>
+</head>
+
+
+ <body>
+       <!-- 背景图片 -->
+       <div id="t0">
+              <!-- 西南石油大学 -->
+              <div id="swpu" title="西南石油大学">
+                    <img id="swpup" src="swpu.png">                  
+              </div>
+              <!-- 石油大学介绍 -->
+              <div id="swput">
+                    <img src="1.jpg" width="370px" id="swpuimg">
+                    <p id="jianjie">
+                         <a href='https://www.swpu.edu.cn/' target='_blank'>西南石油大学</a>(SouthWest Petroleum University),简称“西南石大”（SWPU），位于四川省成都市，由四川省教育行政部门主管。学校入选国家“双一流”建设高校、 中西部高校基础能力建设工程、国家创新人才培养示范基地、国家“111计划”、全国首批首批国家级创新创业学院建设单位。 国家建设高水平大学公派研究生项目。是一所以工为主，文理工学科协调发展的多科性综合性大学，工程学、化学、材料科学、地球科学等学科处于世界高水平行列，在清洁能源与新材料领域具有优势和特色，是国家能源行业人才培养和科学研究的重要基地。
+                    </p>   
+                    <input type="button" value="关闭" id="close">             
+              </div>
+       </div>
+
+       <!-- 顶部导航 -->
+       <div id="top">
+               <!-- 搜索大板块 -->
+                <div id="d1">
+                <div id="search">
+                <!-- 搜索框 -->
+                      <input id="text-in" type ='text' value='搜地点、查公交、找路线'/>
+                      <img id="deleted" src="叉叉.png" title="删除">
+                      <img id="road" src="tent_122925.png" title="点击查看周边">
+                      <img id="luxian" src="map_route_icon_157519.png" title="路线">
+                      
+                <!-- 搜索按钮 -->
+                     <div id="find">
+                            <img id="ss" src="find.png" title="搜索">
+                     </div>
+
+                     <div id="select">
+                            <div id="food"><img id="imgf" src="美食.png" > <p class="p1">找美食</p></div>
+                            <div id="hotel"><img id="imgh" src="酒店.png"> <p class="p1">订酒店</p></div>
+                            <div id="bus"><img id="imgb" src="公交.png"> <p class="p1">公交站</p></div>
+                            <div id="hh"><p id="heng">________________________________________________________</p></div>
+                            <div id="jd"><p class="p1">景点</p></div>
+                            <div id="yh"><p class="p1">银行</p></div>
+                            <div id="dyy"><p class="p1">电影院</p></div>
+                            <div id="sc"><p class="p1">商场</p></div>
+                            <div id="jg"><p class="p1">酒馆</p></div>
+                     </div>
+                            <ul id="u1">
+
+                            </ul>
+                </div>
+        </div>
+
+        <!-- 导航栏 -->
+       <div id="daohanglan">
+            <ul id="dhl">
+                <li class="dhl1" >首页</li>
+                <li class="dhl1" >旅游社区</li>
+                <li class="dhl1" id="qqhx">全球航线
+                <div class="dropdown-content2">
+                    <a href="https://diliyun.com/global-airlines-route-maps" title="点击查询航线">航线查询</a>
+                    <a href="#">机票购买</a>
+                </div></li>  
+
+            <li class="dhl1" id="ldqx">绿道骑行
+                <div class="dropdown-content3">
+                    <a href="https://www.douban.com/note/831156083/?_i=6169739JYZX1_c" title="点击查看天府绿道">成都天府绿道</a>
+                </div></li>
+
+            <li class="dhl1" id="ghx">工具箱
+                <div class="dropdown-content">
+                    <a href="#">测距</a>
+                    <a href="#">标记</a>
+                    <a href="#">分享</a>
+                </div></li>
+            </u1>
+       </div>
+
+            <!-- 登录 -->
+            <div id="login" title="登录"><p id="log">登录</p></div>
+
+            <!-- 切换chengs -->
+            <img id="city" src="城市.png" title="点击切换城市">
+            <div id="citychange">
+                    <div><p class="cityp">当前城市: 成都</p></div>
+                    <div id="hh"><p id="cheng">__________________________________________</p></div>
+
+                    <div id="ctiys">
+                    <!-- 搜索框 -->
+                    <input id="ctext-in" type ='text' value='搜索城市'/>
+                    <input type="button" value="搜索" id="cityb">
+
+                    <div>
+                    <p class="citypr">热门城市: <span class="hotcity">武汉</span> <span class="hotcity">上海</span> <span class="hotcity">青岛</span> <span class="hotcity">贵州</span></p>
+                    </div>
+            </div>
+       </div>
+       
+        
+       <!-- 放大缩小 -->
+       <div id="bigsmall">
+            <img id="jia" src="添加-白色.png" width="15px">
+            <img id="hx" src="横线.png" width="25px">
+            <img id="jian" src="减-白色.png" width="25px">
+        </div>
+
+        <div id="udrl">
+             <!-- 上下左右 -->
+            <div id="shangxia">
+                 <img id="shang" src="向上白色箭头.png" width="15px">
+                 <img id="xia" src="箭头-向下白色.png" width="25px">
+            </div>
+            <div id="zuoyou">
+                 <img id="zuo" src="跳转左(白色).png" width="15px">
+                 <img id="you" src="向右-白色.png" width="25px">
+                 <img id="zhong" src="定位.png" width="15px" title="点击回到原点">
+            </div>
+       </div>
+
+         <div id="container0">
+                 <div class="item">
+                 <img class="icon" src="公交线路.png" alt="公交线路">
+                 <p class="label">公交线路</p>
+         </div>
+
+        <div class="item">
+                <img class="icon" src="路况.png" alt="路况">
+                <p class="label">路况</p>
+        </div>
+
+        <div class="item">
+                <img class="icon" src="tin地形.png" alt="地形">
+                <p class="label">地形</p>
+        </div>
+
+        <div class="item">
+                <img class="icon" src="骑车.png" alt="骑车">
+                <p class="label">骑车</p>
+        </div>
+  </div>
+
+        <div id="container1">
+            <div id="map0">
+             <p id="mapp">地图</p>
+        </div>
+</div>
+
+
+
+ 	<script>
+      window.onload = function () {
+            var top = document.getElementById('top');
+            top.style.width=window.screen.width;
+        };
+
+      //移动
+      var left=document.getElementById('zuo');
+      var right=document.getElementById('you');
+      var up=document.getElementById('shang');
+      var dwon=document.getElementById('xia');
+
+      var swpu=document.getElementById("swpu");
+      var swput=document.getElementById("swput")
+      var close=document.getElementById("close")
+      var Body=document.body;
+
+
+      // 左移动
+      right.onclick=function()
+      {
+          var leftvalue=getComputedStyle(swpu).getPropertyValue("left");
+          var value=parseFloat(leftvalue);
+          var backgroundPosition=getComputedStyle(Body).getPropertyValue("background-position");
+          var positions = backgroundPosition.split(" ");
+          var xValue = parseFloat(positions[0]);
+          var yValue = parseFloat(positions[1]); 
+
+          var backgroundsize=getComputedStyle(Body).getPropertyValue("background-size");
+          var valueIMG=parseInt(backgroundsize);
+
+         if((valueIMG+xValue)>window.screen.width)  
+          { 
+          swpu.style.left=(value-100)+"px";//星星移动
+          Body.style.backgroundPosition=(xValue-100)+"px"+" "+(yValue)+"px";//图片移动
+          }
+      }
+      // 右移动
+      left.onclick=function()
+      {
+          var leftvalue=getComputedStyle(swpu).getPropertyValue("left");
+          var value=parseFloat(leftvalue);
+
+          var backgroundPosition=getComputedStyle(Body).getPropertyValue("background-position");
+          var positions = backgroundPosition.split(" ");
+          var xValue = parseFloat(positions[0]);
+          var yValue = parseFloat(positions[1]);      
+          if(xValue<0)  
+          { 
+           swpu.style.left=(value+100)+"px";//星星移动
+          Body.style.backgroundPosition=(xValue+100)+"px"+" "+(yValue)+"px";//图片移动
+          }
+         
+      }
+
+       // 上移动
+      dwon.onclick=function()
+      {
+          var topvalue=getComputedStyle(swpu).getPropertyValue("top");
+          var value=parseFloat(topvalue);
+
+          var backgroundPosition=getComputedStyle(Body).getPropertyValue("background-position");
+          var positions = backgroundPosition.split(" ");
+          var xValue = parseFloat(positions[0]);
+          var yValue = parseFloat(positions[1]);  
+
+          var backgroundsize=getComputedStyle(Body).getPropertyValue("background-size");
+          var valueIMG=parseInt(backgroundsize);
+          if((valueIMG/5849*4135+yValue)>window.screen.height)  
+          { 
+           swpu.style.top=(value-100)+"px";//星星移动
+          Body.style.backgroundPosition=xValue+"px"+" "+(yValue-100)+"px";//图片移动
+          }      
+      }
+        // 下移动
+      up.onclick=function()
+      {
+          var topvalue=getComputedStyle(swpu).getPropertyValue("top");
+          var value=parseFloat(topvalue);
+
+          var backgroundPosition=getComputedStyle(Body).getPropertyValue("background-position");
+          var positions = backgroundPosition.split(" ");
+          var xValue = parseFloat(positions[0]);
+          var yValue = parseFloat(positions[1]); 
+
+          if(yValue<0)  
+          { 
+           swpu.style.top=(value+100)+"px";//星星移动
+          Body.style.backgroundPosition=xValue+"px"+" "+(yValue+100)+"px";//图片移动
+          }    
+          
+      }
+
+       // 放大效果
+       var big=document.getElementById("jia");
+       big.onclick=function()
+       {
+        var backgroundsize=getComputedStyle(Body).getPropertyValue("background-size");
+        var value=parseFloat(backgroundsize);
+         //图片放大
+        if(value<3800)
+         { 
+         Body.style.backgroundSize=(value*1.1)+"px";//图片放大
+         // 更新星星的位置
+           updateFollower1();  
+           } 
+       }
+
+        // 缩小效果
+       var small=document.getElementById("jian");
+       small.onclick=function()
+       {
+        var backgroundPosition=getComputedStyle(Body).getPropertyValue("background-position");
+             var positions = backgroundPosition.split(" ");
+             var xValue = (parseFloat(positions[0]))*(-1);
+             var yValue = (parseFloat(positions[1]))*(-1);  
+
+        var backgroundsize=getComputedStyle(Body).getPropertyValue("background-size");
+        var value=parseFloat(backgroundsize);
+        if(((value-xValue-100)>window.screen.width)&&((value/5849*4135-yValue)>window.screen.height))
+        {
+         //图片放大
+         Body.style.backgroundSize=(value/1.1)+"px";//图片放大
+         // 更新星星的位置
+           updateFollower2() ;  
+        }
+
+       }
+    
+        var width0=getComputedStyle(swpu).getPropertyValue("width");
+        var height0=getComputedStyle(swpu).getPropertyValue("height");
+        var starwidth=parseFloat(width0);
+        var starheight=parseFloat(height0);
+
+         // 星星跟随更新函数
+        function updateFollower1() {
+            //图片位置
+             var backgroundPosition=getComputedStyle(Body).getPropertyValue("background-position");
+             var positions = backgroundPosition.split(" ");
+             var xValue = (parseFloat(positions[0]))*(-1);
+             var yValue = (parseFloat(positions[1]))*(-1);  
+             //星星位置
+            var leftvalue=getComputedStyle(swpu).getPropertyValue("left");
+            var Lvalue=parseFloat(leftvalue)+starwidth/2;
+            var topvalue=getComputedStyle(swpu).getPropertyValue("top");
+            var Tvalue=parseFloat(topvalue)+starheight/2;
+
+             var bgX = xValue+Lvalue; // 背景图片的X偏移
+             var bgY = yValue+Tvalue; // 背景图片的Y偏移
+             var starOffsetX = bgX*1.1; // 星星相对于背景图片左上角的初始X位置
+             var starOffsetY = bgY*1.1; // 星星相对于背景图片左上角的初始Y位置
+            var adjustedX = starOffsetX-xValue -starwidth/2 ;
+            var adjustedY = starOffsetY-yValue -starheight/2;
+            swpu.style.left = adjustedX + 'px';
+            swpu.style.top = adjustedY + 'px';
+        }
+          // 星星跟随更新函数
+        function updateFollower2() {
+             //图片位置
+             var backgroundPosition=getComputedStyle(Body).getPropertyValue("background-position");
+             var positions = backgroundPosition.split(" ");
+             var xValue = (parseFloat(positions[0]))*(-1);
+             var yValue = (parseFloat(positions[1]))*(-1);  
+              //星星位置
+            var leftvalue=getComputedStyle(swpu).getPropertyValue("left");
+            var Lvalue=parseFloat(leftvalue)+starwidth/2;
+            var topvalue=getComputedStyle(swpu).getPropertyValue("top");
+            var Tvalue=parseFloat(topvalue)+starheight/2;
+                // 背景图初始参数
+             var bgX = xValue+Lvalue; // 背景图片的X偏移
+             var bgY = yValue+Tvalue; // 背景图片的Y偏移
+             var starOffsetX = bgX/1.1; // 星星相对于背景图片左上角的初始X位置
+             var starOffsetY = bgY/1.1; // 星星相对于背景图片左上角的初始Y位置
+            var adjustedX = starOffsetX-xValue-starwidth/2 ;
+            var adjustedY = starOffsetY-yValue -starheight/2;
+            swpu.style.left = adjustedX + 'px';
+            swpu.style.top = adjustedY + 'px';
+        }
+        // 回到原点
+        zhong.onclick=function()
+        {
+            Body.style.backgroundPosition="-1000px -700px";
+            Body.style.backgroundSize = "3000px";
+            swpu.style.left = '750px';
+            swpu.style.top = '185px';
+            clicknum=0;
+        }
+
+
+
+      //点击搜索框
+       var swc=['西南石油大学思学楼','西南石油大学明志楼','西南石油大学笃行居','西南石油大学一期操场','西南石油大学警务室'];
+       var search=document.getElementById("text-in");
+       var select=document.getElementById("select");
+       var road=document.getElementById("road");
+       var u1=document.getElementById("u1");
+       var deleted=document.getElementById("deleted");
+       var city=document.getElementById("city");
+       var map=document.getElementById("container1");
+       road.onclick=function()
+       {
+            select.style.display="block";
+            u1.style.display="none";
+            deleted.style.display="none";
+       }
+      //删除
+      deleted.onclick=function(){
+        search.value="";
+      }
+      // 可以灵活调整长度
+        search.onclick=function()
+       {
+           select.style.display="none";
+           u1.style.display="block";
+           deleted.style.display="block";
+           u1.innerHTML='';
+            for(var i=0;i<swc.length;i++)
+            {
+                var li=document.createElement('li');
+                 li.className = "swpu1";
+                 li.innerHTML='<img src="search_magnifier_icon_145939.png" width="15px">'
+                 +'<span class="s2">'+swc[i]+'</span>';
+                 u1.appendChild(li);
+            }
+            var aa=search.value;
+            if(aa=="搜地点、查公交、找路线")
+            search.value="";
+       }
+       //西南石油弹出简介
+       swpu.onclick=function(){
+        swput.style.display="block";
+       }
+
+       t0.onclick=function()
+       {
+            select.style.display="none";
+            search.value="搜地点、查公交、找路线";
+            u1.style.display="none";
+            deleted.style.display="none";
+            citychange.style.display="none";
+             container0.style.display="none";
+       }
+       close.onclick=function(){
+         swput.style.display="none";
+       }
+       // 切换城市
+
+       city.onclick=function () {
+           citychange.style.display="block";
+       }
+       map.onclick=function(){
+        container0.style.display="block";
+       }
+  
+ 	</script>
+ </body>
+  </html>
